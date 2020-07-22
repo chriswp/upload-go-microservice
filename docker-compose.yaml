@@ -2,5 +2,6 @@ version: '3'
 services:
   app:
     build: .
+    container_name: app_codeflix_go
     volumes:
       - '.:/go/src'

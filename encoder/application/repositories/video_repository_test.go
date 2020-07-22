@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func TestNewVideoRepository(t *testing.T) {
+func TestVideoRepositoryDbInsert(t *testing.T) {
 	db := database.NewDbTest()
 	defer db.Close()
 
