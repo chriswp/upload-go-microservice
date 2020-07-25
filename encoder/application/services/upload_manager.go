@@ -74,7 +74,7 @@ func (vu *VideoUpload) ProcessUpload(concurrency int, doneUpload chan string) er
 		return err
 	}
 
-	for process := 0; process > concurrency; process++ {
+	for process := 0; process < concurrency; process++ {
 		go vu.uploadWorker(in, returnChannel, uploadCliente, ctx)
 	}
 
