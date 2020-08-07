@@ -76,7 +76,7 @@ func (v VideoService) Fragment() error {
 	return nil
 }
 
-func(v VideoService) Encode() error  {
+func (v VideoService) Encode() error {
 	cmdArgs := []string{}
 	cmdArgs = append(cmdArgs, os.Getenv("LOCAL_STORAGE_PATH")+"/"+v.Video.ID+".frag")
 	cmdArgs = append(cmdArgs, "--use-segment-timeline")
@@ -95,32 +95,40 @@ func(v VideoService) Encode() error  {
 	printOutput(output)
 	return nil
 
-
 }
 
-func(v *VideoService) Finish() error{
-	err := os.Remove(os.Getenv("LOCAL_STORAGE_PATH")+"/"+v.Video.ID+".mp4")
+func (v *VideoService) Finish() error {
+	err := os.Remove(os.Getenv("LOCAL_STORAGE_PATH") + "/" + v.Video.ID + ".mp4")
 	if err != nil {
-		log.Println("erro ao remover  arquivo mp4",v.Video.ID,".mp4")
+		log.Println("erro ao remover  arquivo mp4", v.Video.ID, ".mp4")
 		return err
 	}
 
-	err = os.Remove(os.Getenv("LOCAL_STORAGE_PATH")+"/"+v.Video.ID+".frag")
+	err = os.Remove(os.Getenv("LOCAL_STORAGE_PATH") + "/" + v.Video.ID + ".frag")
 	if err != nil {
-		log.Println("erro ao remover arquivo fragmento",v.Video.ID,".frag")
+		log.Println("erro ao remover arquivo fragmento", v.Video.ID, ".frag")
 		return err
 	}
 
-	err = os.RemoveAll(os.Getenv("LOCAL_STORAGE_PATH")+"/"+v.Video.ID)
+	err = os.RemoveAll(os.Getenv("LOCAL_STORAGE_PATH") + "/" + v.Video.ID)
 	if err != nil {
-		log.Println("erro ao remover a pasta",v.Video.ID)
+		log.Println("erro ao remover a pasta", v.Video.ID)
 		return err
 	}
 
-	log.Println("os arquivos foram apagados",v.Video.ID)
+	log.Println("os arquivos foram apagados", v.Video.ID)
 	return nil
 }
 
+func (v *VideoService) InsertVideo() error {
+	_, err := v.VideoRepository.Insert(v.Video)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
 
 func printOutput(out []byte) {
 	if len(out) > 0 {
