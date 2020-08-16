@@ -100,6 +100,8 @@ func (r *RabbitMQ) Notify(message string, contentType string, exchange string, r
 	return nil
 }
 
-func failOnError(e error, message string) {
-
+func failOnError(err error, msg string) {
+	if err != nil {
+		log.Fatalf("%s: %s", msg, err)
+	}
 }
