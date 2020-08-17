@@ -32,7 +32,7 @@ func init() {
 	db.AutoMigrateDb = autoMigrateDb
 	db.Debug = debug
 	db.DsnTest = os.Getenv("DSN_TEST")
-	db.Dsn = os.Getenv("DSN")
+	db.Dsn = os.Getenv("DSN_TEST")
 	db.DbTypeTest = os.Getenv("DB_TYPE_TEST")
 	db.DbType = os.Getenv("DB_TYPE")
 	db.Env = os.Getenv("ENV")

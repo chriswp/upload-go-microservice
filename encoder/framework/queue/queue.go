@@ -20,6 +20,7 @@ type RabbitMQ struct {
 }
 
 func NewRabbitMQ() *RabbitMQ {
+
 	rabbitMQArgs := amqp.Table{}
 	rabbitMQArgs["x-dead-letter-exchange"] = os.Getenv("RABBITMQ_DLX")
 

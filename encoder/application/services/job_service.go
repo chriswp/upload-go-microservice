@@ -95,7 +95,7 @@ func (j *JobService) performUpload() error {
 	var uploadResult string
 	uploadResult = <-doneUpload
 
-	if uploadResult != "upload completed" {
+	if uploadResult != "upload realizado" {
 		return j.failJob(errors.New(uploadResult))
 	}
 
@@ -108,7 +108,7 @@ func (j *JobService) changeJobStatus(status string) error {
 	j.Job, err = j.JobRepository.Update(j.Job)
 
 	if err != nil {
-		return err
+		return j.failJob(err)
 	}
 
 	return nil
