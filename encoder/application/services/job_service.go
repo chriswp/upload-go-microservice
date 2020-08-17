@@ -123,5 +123,5 @@ func (j *JobService) failJob(e error) error {
 		return err
 	}
 
-	return nil
+	return e
 }
