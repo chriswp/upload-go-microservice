@@ -91,7 +91,7 @@ func (j *JobManager) checkParseErrors(jobResult JobWorkerResult) error {
 		log.Printf("MessageID: %v. erro ao executar o job: %v com video: %v. Error: %v",
 			jobResult.Message.DeliveryTag, jobResult.Job.ID, jobResult.Job.Video.ID, jobResult.Error.Error())
 	} else {
-		log.Printf("MessageID: %v. Erro ao analisar a mensagem: %v", jobResult.Message.DeliveryTag, jobResult.Error)
+		log.Printf("MessageID: %v. Erro: %v", jobResult.Message.DeliveryTag, jobResult.Error)
 	}
 
 	errorMsg := JobNotificationError{
